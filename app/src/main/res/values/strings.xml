@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Laboratory 1</string>
+    <string name="action_settings">Settings</string>
+    <string name="welcome">Welcome to <B>laboratory 1</B> application</string>
+    <string name="button1">Click here!</string>
+    <string name="snacktext">My own text with <i>italics</i> and <b>bold</b>!</string>
+
+    <string name="save">Save</string>
+    <string name="textColor">Text color</string>
+    <string name="backgroundColor">Background color</string>
+</resources>

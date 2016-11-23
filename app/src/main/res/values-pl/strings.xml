@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Laboratorium 1</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="welcome">Witaj aplikacji <b>laboratorium 1</b></string>
+    <string name="button1">Kliknij tutaj!</string>
+    <string name="snacktext">Mój tekst z <i>kursywą</i> i <b>pogrubieniem</b>!</string>
+
+    <string name="save">Zapisz</string>
+    <string name="textColor">Kolor tekstu</string>
+    <string name="backgroundColor">Kolor tła</string>
+</resources>
