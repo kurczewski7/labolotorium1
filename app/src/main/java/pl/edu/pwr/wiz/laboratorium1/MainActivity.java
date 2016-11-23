@@ -2,6 +2,7 @@ package pl.edu.pwr.wiz.laboratorium1;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,28 +17,59 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import static android.graphics.Color.BLACK;
 import static android.graphics.Color.WHITE;
+import static pl.edu.pwr.wiz.laboratorium1.R.id.image1;
 
 public class MainActivity extends AppCompatActivity {
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) this.findViewById(R.id.toolbar);
+        final ImageView obrazek = (ImageView) this.findViewById(R.id.image1);
+        Button przycisk = (Button) this.findViewById(R.id.button1);
+        FloatingActionButton fab = (FloatingActionButton) this.findViewById(R.id.fab);
+
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) this.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // @TODO wyświetlać Snackbar
-
+                Snackbar.make(view, R.string.snacktext, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             }
         });
 
         // @TODO wyswietlac i ukrywac obrazek
+        przycisk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Log.w("Labolatorium1","wciśnięto przycisk");
+
+                if (obrazek.getAlpha() >= (float)0.9) {
+                    obrazek.setAlpha((float)0.1);
+                } else {
+                    obrazek.setAlpha((float)0.9);
+                }
+
+            }
+        });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -62,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
             ColorDrawable cd = (ColorDrawable) welcome.getBackground();
             int backgroundColor;
-            if(cd != null) {
+            if (cd != null) {
                 backgroundColor = cd.getColor();
             } else {
                 backgroundColor = WHITE;
@@ -91,5 +123,41 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), txt, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("Main Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
     }
 }
