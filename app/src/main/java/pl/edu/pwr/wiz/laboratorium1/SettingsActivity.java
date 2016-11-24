@@ -21,6 +21,8 @@ public class SettingsActivity extends AppCompatActivity {
         TypedValue typedValue = new TypedValue();
 
         // @TODO Pobierz aktualne kolory */
+        textColor=this.getIntent().getIntExtra("textColor",0);
+        backgroundColor=this.getIntent().getIntExtra("backgroundColor",0);
 
     }
 
@@ -28,6 +30,8 @@ public class SettingsActivity extends AppCompatActivity {
         Intent result = new Intent();
 
         // @TODO Przekaż dane powrotne z nowymi kolorami
+        result.putExtra("textColor",textColor);
+        result.putExtra("backgroundColor",backgroundColor);
 
         result.putExtra("txt", "Ustawienia zapisane");
         setResult(Activity.RESULT_OK, result);
