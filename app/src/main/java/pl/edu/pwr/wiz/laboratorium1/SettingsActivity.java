@@ -104,6 +104,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public void onStart() {
+
         super.onStart();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
